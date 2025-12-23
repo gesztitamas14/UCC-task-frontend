@@ -1,0 +1,39 @@
+<div class="sidebar-backdrop" *ngIf="open" (click)="close.emit()"></div>
+
+<div class="sidebar" [class.open]="open">
+  <div class="sidebar-header">
+    <h5>New Event</h5>
+    <button class="btn-close" (click)="close.emit()"></button>
+  </div>
+
+  <form (submit)="save(); $event.preventDefault()">
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input class="form-control" [(ngModel)]="title" name="title" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Date & Time</label>
+      <input
+        type="datetime-local"
+        class="form-control"
+        [(ngModel)]="occurrence_datetime"
+        name="occurrence_datetime"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        [(ngModel)]="description"
+        name="description"
+      ></textarea>
+    </div>
+
+    <button class="btn btn-primary w-100">
+      Save
+    </button>
+  </form>
+</div>

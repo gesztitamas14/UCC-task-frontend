@@ -3,16 +3,31 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { LoginComponent } from './auth/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { EventListComponent } from './events/event-list/event-list.component';
+import { EventformComponent } from './events/event-form/event-form.component';
+import { EventTableComponent } from './shared/event-table/event-table.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    EventListComponent,
+    EventformComponent,
+    EventTableComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
