@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { EventListComponent } from './events/event-list/event-list.component';
 import { EventformComponent } from './events/event-form/event-form.component';
 import { EventTableComponent } from './shared/event-table/event-table.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { EventTableComponent } from './shared/event-table/event-table.component'
     EventListComponent,
     EventformComponent,
     EventTableComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

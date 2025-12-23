@@ -1,0 +1,11 @@
+<nav class="header-nav">
+  <div class="logo">
+    <span>Event manager</span>
+  </div>
+
+  <div class="actions">
+    <button *ngIf="LoggedIn" (click)="logout()" class="logout-btn">
+      <i class="bi bi-box-arrow-right"></i>
+    </button>
+  </div>
+</nav>
