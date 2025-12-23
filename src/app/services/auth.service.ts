@@ -14,7 +14,6 @@ export class AuthService {
     return this.http.post<{ access_token: string }>(`${this.apiUrl}/login`, { email, password })
       .pipe(
         tap(res => {
-          console.log("res: ", res)
           localStorage.setItem('access_token', res.access_token);
         })
       );
@@ -24,9 +23,13 @@ export class AuthService {
     localStorage.removeItem('access_token');
   }
 
-getToken(): string | null {
-  const token = localStorage.getItem('access_token');
-  console.log('TOKEN:', token);
-  return token;
-}
+  getToken(): string | null {
+    const token = localStorage.getItem('access_token');
+    return token;
+  }
+
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('access_token');
+    return !!token;
+  }
 }
