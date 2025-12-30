@@ -9,6 +9,7 @@ import { EventService, AppEvent } from 'src/app/services/event.service';
 export class EventListComponent implements OnInit {
   events: AppEvent[] = [];
   sidebarOpen = false;
+  selectedEvent: AppEvent | null = null;
 
   constructor(private eventService: EventService) {}
 
@@ -25,11 +26,18 @@ export class EventListComponent implements OnInit {
   }
 
   openSidebar() {
+    this.selectedEvent = null;
+    this.sidebarOpen = true;
+  }
+
+  editEvent(event: AppEvent) {
+    this.selectedEvent = event;
     this.sidebarOpen = true;
   }
 
   onEventSaved() {
     this.sidebarOpen = false;
+    this.selectedEvent = null;
     this.loadEvents();
   }
 }

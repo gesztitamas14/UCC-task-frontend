@@ -17,6 +17,7 @@
   <app-event-table
     [events]="events"
     (delete)="deleteEvent($event)"
+    (edit)="editEvent($event)"
   ></app-event-table>
 
 </div>
@@ -24,6 +25,7 @@
 <!-- Sidebar -->
 <app-event-form
   [open]="sidebarOpen"
+  [event]="selectedEvent"
   (close)="sidebarOpen = false"
   (saved)="onEventSaved()"
 ></app-event-form>

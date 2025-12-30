@@ -27,4 +27,9 @@ export class LoginComponent implements OnInit {
       error: err => this.errorMessage = 'Login failed'
     });
   }
+
+  openResetPassword() {
+    this.router.navigate(['/reset-password']);
+  }
+
 }

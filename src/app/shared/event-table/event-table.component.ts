@@ -9,4 +9,5 @@ import { AppEvent } from 'src/app/services/event.service';
 export class EventTableComponent {
   @Input() events: AppEvent[] = [];
   @Output() delete = new EventEmitter<number>();
+  @Output() edit = new EventEmitter<AppEvent>();
 }

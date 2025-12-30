@@ -27,3 +27,9 @@
   align-items: center;
   margin-bottom: 1rem;
 }
+
+input[readonly],
+textarea[readonly] {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
