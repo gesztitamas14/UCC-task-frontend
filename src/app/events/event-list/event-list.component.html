@@ -14,11 +14,13 @@
   </div>
 
   <!-- Table -->
-  <app-event-table
-    [events]="events"
+  <app-data-table
+    [rows]="events"
+    [columns]="columns"
     (delete)="deleteEvent($event)"
     (edit)="editEvent($event)"
-  ></app-event-table>
+  ></app-data-table>
+
 
 </div>
 

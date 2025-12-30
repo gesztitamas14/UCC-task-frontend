@@ -6,11 +6,18 @@ import { EventformComponent } from './events/event-form/event-form.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SetNewPasswordComponent } from './auth/set-new-password/set-new-password.component';
+import { EventListResolver } from './resolvers/event-list-resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'events', component: EventListComponent, canActivate: [AuthGuard] },
+  {
+    path: 'events',
+    component: EventListComponent,
+    resolve: {
+      table: EventListResolver
+    }
+  },
   { path: 'events/new', component: EventformComponent, canActivate: [AuthGuard] },
   { path: 'reset-password', component: ResetPasswordComponent},
   { path: 'set-new-password', component: SetNewPasswordComponent }

@@ -9,10 +9,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventListComponent } from './events/event-list/event-list.component';
 import { EventformComponent } from './events/event-form/event-form.component';
-import { EventTableComponent } from './shared/event-table/event-table.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SetNewPasswordComponent } from './auth/set-new-password/set-new-password.component';
+import { DataTableComponent } from './shared/data-table/data-table.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { SetNewPasswordComponent } from './auth/set-new-password/set-new-passwor
     LoginComponent,
     EventListComponent,
     EventformComponent,
-    EventTableComponent,
+    DataTableComponent,
     HeaderComponent,
     ResetPasswordComponent,
     SetNewPasswordComponent

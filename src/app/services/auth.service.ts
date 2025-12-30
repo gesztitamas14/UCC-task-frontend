@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3000/auth';
-  private loggedInSubject = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
+  private loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
   loggedIn$ = this.loggedInSubject.asObservable();
 
   constructor(private http: HttpClient) { }
@@ -23,6 +23,10 @@ export class AuthService {
       );
   }
 
+  private hasToken(): boolean {
+    return !!localStorage.getItem('access_token');
+  }
+
   getToken(): string | null {
     const token = localStorage.getItem('access_token');
     return token;
@@ -34,8 +38,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    const token = localStorage.getItem('access_token');
-    return !!token;
+    return this.hasToken();
   }
 
   requestPasswordReset(email: string): Observable<any> {

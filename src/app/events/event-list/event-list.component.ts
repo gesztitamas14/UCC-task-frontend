@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TableColumn } from 'src/app/resolvers/event-list-resolver';
 import { EventService, AppEvent } from 'src/app/services/event.service';
 
 @Component({
@@ -8,13 +10,16 @@ import { EventService, AppEvent } from 'src/app/services/event.service';
 })
 export class EventListComponent implements OnInit {
   events: AppEvent[] = [];
+  columns: TableColumn<AppEvent>[] = [];
   sidebarOpen = false;
   selectedEvent: AppEvent | null = null;
 
-  constructor(private eventService: EventService) {}
+  constructor(private eventService: EventService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.loadEvents();
+    const data = this.route.snapshot.data['table'];
+    this.events = data.events;
+    this.columns = data.columns;
   }
 
   loadEvents() {
