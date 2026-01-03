@@ -16,15 +16,36 @@ export class LoginComponent implements OnInit {
   
   ngOnInit(): void {
     const token = localStorage.getItem('access_token');
-    if (token) {
-      this.router.navigate(['/events']);
+    const uid = localStorage.getItem('uid');
+
+    if (token && uid) {
+      this.redirectByRole(+uid);
     }
   }
 
-  login() {
+  login(): void {
     this.authService.login(this.email, this.password).subscribe({
-      next: () => this.router.navigate(['/events']),
-      error: err => this.errorMessage = 'Login failed'
+      next: res => {
+        this.redirectByRole(+res.user_id);
+      },
+      error: () => {
+        this.errorMessage = 'Login failed';
+      }
+    });
+  }
+
+  private redirectByRole(userId: number): void {
+    this.authService.getUserById(userId).subscribe({
+      next: user => {
+        if (user.role === 'HELP_DESK') {
+          this.router.navigate(['/helpdesk']);
+        } else {
+          this.router.navigate(['/events']);
+        }
+      },
+      error: () => {
+        this.router.navigate(['/login']);
+      }
     });
   }
 

@@ -1,2 +1,14 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
+
+<div *ngIf="LoggedIn && role !== 'HELP_DESK'" style="position:fixed; bottom:1rem; right:1rem; z-index: 1">
+
+  <app-chat *ngIf="showChat" [currentUser]="currentUser" [chatId]="selectedChatId" [mode]="'USER'"
+    (closed)="showChat = false">
+  </app-chat>
+
+  <button *ngIf="!showChat" style="border-radius: 50%; border: 1px darkgrey solid; width: 50px; height: 50px;"
+    class="btn btn-primary" (click)="showChat = true">
+    <i class="bi bi-chat"></i>
+  </button>
+</div>

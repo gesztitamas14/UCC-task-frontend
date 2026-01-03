@@ -13,6 +13,9 @@ import { HeaderComponent } from './shared/header/header.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SetNewPasswordComponent } from './auth/set-new-password/set-new-password.component';
 import { DataTableComponent } from './shared/data-table/data-table.component';
+import { ChatComponent } from './chat/chat.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HelpdeskPageComponent } from './helpdesk-page/helpdesk-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { DataTableComponent } from './shared/data-table/data-table.component';
     DataTableComponent,
     HeaderComponent,
     ResetPasswordComponent,
-    SetNewPasswordComponent
+    SetNewPasswordComponent,
+    ChatComponent,
+    HelpdeskPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +36,7 @@ import { DataTableComponent } from './shared/data-table/data-table.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

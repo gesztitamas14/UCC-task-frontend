@@ -1,0 +1,26 @@
+.chat-area {
+  min-height: 0;
+}
+
+.chat-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sender-name {
+  font-weight: bold;
+  color: #0d6efd;
+  margin-bottom: 2px;
+  display: inline-block;
+}
+
+.user-size{
+  width: 300px;
+  height: 400px;
+}
+
+.helpdesk-size{
+  width: 400px;
+  height: 500px;
+}

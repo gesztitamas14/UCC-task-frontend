@@ -2,13 +2,7 @@ import { Injectable } from "@angular/core";
 import { Resolve } from "@angular/router";
 import { AppEvent, EventService } from "../services/event.service";
 import { firstValueFrom } from "rxjs";
-
-export interface TableColumn<T = any> {
-    key: keyof T | string;
-    header: string;
-    formatter?: (value: any, row: T) => string;
-    class?: string;
-}
+import { TableColumn } from "../models/table-column.model";
 
 @Injectable({ providedIn: 'root' })
 export class EventListResolver implements Resolve<{

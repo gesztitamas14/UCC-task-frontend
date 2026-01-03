@@ -1,0 +1,22 @@
+<app-data-table
+  [rows]="chats"
+  [columns]="columns"
+  [isHelpdesk]="isHelpdesk"
+  (openChat)="openChat($event)"
+  (closeChat)="closeChat($event)">
+</app-data-table>
+
+<div
+  class="chat-overlay"
+  *ngIf="selectedChat"
+  (click)="selectedChat = null">
+</div>
+
+<app-chat
+  *ngIf="selectedChat"
+  class="chat-modal"
+  [currentUser]="currentUser"
+  [chatId]="selectedChat.id"
+  [mode]="'HELP_DESK'"
+  (closed)="selectedChat = null">
+</app-chat>

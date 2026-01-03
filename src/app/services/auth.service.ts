@@ -8,16 +8,18 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3000/auth';
+  private userApiUrl = 'http://localhost:3000/users';
   private loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
   loggedIn$ = this.loggedInSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string) {
-    return this.http.post<{ access_token: string }>(`${this.apiUrl}/login`, { email, password })
+    return this.http.post<{ access_token: string, user_id: any }>(`${this.apiUrl}/login`, { email, password })
       .pipe(
         tap(res => {
           localStorage.setItem('access_token', res.access_token);
+          localStorage.setItem('uid', res.user_id);
           this.loggedInSubject.next(true);
         })
       );
@@ -34,6 +36,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('uid');
     this.loggedInSubject.next(false);
   }
 
@@ -47,5 +50,13 @@ export class AuthService {
 
   resetPassword(email: string, token: string, newPassword: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/reset-password`, { email, token, newPassword });
+  }
+
+  getUserById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.userApiUrl}/user/${id}`, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`
+      }
+    });
   }
 }

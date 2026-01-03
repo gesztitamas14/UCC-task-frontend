@@ -10,28 +10,41 @@
 
   <tbody>
     <tr *ngFor="let row of rows">
-    <td *ngFor="let col of columns" [ngClass]="col.class">
-      {{
+      <td *ngFor="let col of columns" [ngClass]="col.class">
+        {{
         col.formatter
-          ? col.formatter(getValue(row, col.key), row)
-          : getValue(row, col.key)
-      }}
-    </td>
+        ? col.formatter(getValue(row, col.key), row)
+        : getValue(row, col.key)
+        }}
+      </td>
 
       <td class="text-end">
-        <button
-          class="btn btn-sm btn-outline-secondary me-2"
-          (click)="editRow(row)"
-        >
-          <i class="bi bi-pencil"></i>
-        </button>
 
-        <button
-          class="btn btn-sm btn-outline-danger"
-          (click)="remove(getId(row))"
-        >
-          <i class="bi bi-trash"></i>
+        <ng-container *ngIf="isHelpdesk && hasStatus(row) && row.status !== 'CLOSED'">
+
+          <button
+            class="btn btn-sm btn-outline-primary me-2"
+            (click)="onOpenChat(row)">
+            <i class="bi bi-chat-dots"></i>
+          </button>
+
+          <button
+            class="btn btn-sm btn-outline-success me-2"
+            (click)="onCloseChat(row)">
+            <i class="bi bi-check-circle"></i>
+          </button>
+
+        </ng-container>
+
+        <ng-container *ngIf="!isHelpdesk">
+          <button class="btn btn-sm btn-outline-secondary me-2" (click)="editRow(row)">
+            <i class="bi bi-pencil"></i>
+          </button>
+
+          <button class="btn btn-sm btn-outline-danger" (click)="remove(getId(row))">
+            <i class="bi bi-trash"></i>
         </button>
+        </ng-container>
       </td>
     </tr>
   </tbody>

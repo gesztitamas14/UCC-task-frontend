@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TableColumn } from 'src/app/resolvers/event-list-resolver';
+import { TableColumn } from 'src/app/models/table-column.model';
 import { EventService, AppEvent } from 'src/app/services/event.service';
 
 @Component({
